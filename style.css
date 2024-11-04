@@ -4,15 +4,15 @@
   --colorp2: #191919;
   --colorprimary: #000000;
   --colorsecondary: #ffffff;
-  --coloraccent: #05f903;
-  --colorlinks: #0abefb;
+  --coloraccent: #b76e79;
+  --colorlinks: #e1c564;
   --ff: "Roboto", sans-serif;
   --h1: bold 54px/70px var(--ff);
   --h2: bold 36px/36px var(--ff);
   --h3: bold 24px/30px var(--ff);
   --links: bold 18px/18px var(--ff);
-  --p2: bold 30px/36px var(--ff);
-  --p: bold 18px/36px var(--ff);
+  --p2: 30px/36px var(--ff);
+  --p: 18px/36px var(--ff);
   --transition: 300ms ease-in-out;
 }
 
@@ -69,8 +69,18 @@ nav {
   height: 80px;
 }
 
+.nav-bg-color {
+  width: 100%;
+  background-color: var(--colorp2);
+}
+
 .logo {
   width: 50px;
+  transition: var(--transition);
+}
+
+.logo:hover {
+  scale: 1.11;
 }
 
 a {
@@ -152,6 +162,13 @@ nav a {
     flex-direction: column-reverse;
     padding-bottom: 40px;
   }
+
+  h1,
+  .hero-para,
+  #primary-links {
+    text-align: center;
+    justify-content: center;
+  }
 }
 
 /* HERO */
@@ -172,11 +189,11 @@ img {
 }
 
 .button {
-    padding: 0px 20px;
+  padding: 0px 20px;
 }
 
 .button2 {
-    width: 300px;
+  width: 300px;
 }
 
 .button,
@@ -207,7 +224,8 @@ img {
 
 #podcasts {
   text-align: center;
-  background-image: url(assets/podcast\ bg.webp);
+  /* background-image: url(assets/podcast\ bg.webp); */
+  background: var(--colorp2);
   padding: 100px 0px;
 }
 
@@ -237,6 +255,8 @@ img {
 
 /* RESEARCH */
 
+/* PLAN TO ADD THE DESCRIPTIONS TO APPEAR OVER THE IMG WHEN HOVERED OVER */
+
 #research {
   margin-top: 100px;
   text-align: center;
@@ -259,7 +279,6 @@ img {
   border-radius: 10px;
   flex: 1;
   min-width: 280px;
-
 }
 
 .research img {
@@ -281,7 +300,6 @@ img {
   gap: 20px;
 }
 
-
 .social-icons {
   margin-top: 20px;
   display: flex;
@@ -290,17 +308,85 @@ img {
 }
 
 .social-icons i {
-    font-size: 30px;
-    cursor: pointer;
-    transition: var(--transition);
+  font-size: 30px;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 .social-icons i:hover {
-    color: var(--coloraccent);
+  color: var(--coloraccent);
 }
 
 .inspiration {
   text-align: center;
   padding: 100px 100px;
+}
 
+/* PHOTO-POSTS */
+
+.container {
+  margin: 80px 0 auto;
+
+  max-width: 1200px;
+}
+
+.photo-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.photo {
+  width: 50%;
+  flex: 1;
+}
+
+.photo-card {
+  background-color: var(--colorp2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+  border-radius: 10px;
+  min-width: 280px;
+  flex: 1;
+}
+
+.photo-card:hover {
+}
+
+.photo-card__container {
+  padding: 20px 20px 40px 20px;
+}
+
+.fa-spinner {
+  font-size: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: rotate 600ms infinite linear;
+}
+
+figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.photo__loading--spinner {
+  display: none;
+}
+
+.photo__loading .photo__loading--spinner {
+  display: block;
+}
+
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
 }
