@@ -34,20 +34,38 @@ document.querySelectorAll(".nav-link").forEach((n) =>
 const photoListEl = document.querySelector(".photo-list");
 const photoWrapper = document.querySelector(".photo")
 
-async function main() {
-  const photos = await fetch("https://picsum.photos/v2/list");
-  photoWrapper.classList += " photo__loading"
-  const photosData = await photos.json();
-  photoWrapper.classList.remove("photo__loading")
+let photosData = [];
 
-  //   console.log(usersData);
-  photoListEl.innerHTML = photosData.map((photo) => photoHTML(photo)).slice(10, 16).join("");
+async function main() {
+  const response = await fetch("https://picsum.photos/v2/list");
+  photoWrapper.classList.add("photo__loading");
+  photosData = await response.json();
+  photoWrapper.classList.remove("photo__loading");
+
+  displayPhotos(10, 16);
+
+//   photoListEl.innerHTML = photosData.map((photo) => photoHTML(photo)).slice(10, 16).join("");
 }
 
 main();
 
+function displayPhotos(start, end) {
+    const photosToDisplay = photosData.slice(start, end);
+    photoListEl.innerHTML = photosToDisplay.map((photo) =>
+ photoHTML(photo)).join("");
+}
+
 function onSearchChange(event) {
-    console.log(event.target.value);
+    const count = parseInt(event.target.value) * 6;
+    if (count <= photosData.length) {
+        displayPhotos (0, count);
+    }
+    else {
+        displayPhotos(0, photosData.length);
+    }
+
+
+    // console.log(event.target.value);
 }
 
 // function showPhotoPosts(id) {
@@ -73,3 +91,30 @@ function photoHTML(photo) {
 //                  <p><b>Website:</b> <a href="https://${user.website}" target="_blank">${user.website}</a></p>
 //              </div>
 //            </div>`;
+
+
+
+/* AI CODE */
+
+// let currentPage = 0; // To keep track of current batch
+
+// async function fetchItems(page) {
+//     const response = await fetch(`https://api.example.com/items?_page=${page}&_limit=6`);
+//     const data = await response.json();
+//     return data;
+// }
+
+// async function loadItems() {
+//     const items = await fetchItems(currentPage);
+//     const itemContainer = document.getElementById('itemContainer');
+
+//     items.forEach(item => {
+//         const div = document.createElement('div');
+//         div.innerText = item.name; // Adjust according to your item structure
+//         itemContainer.appendChild(div);
+//     });
+
+//     currentPage++; // Increment the page for the next batch
+// }
+
+// document.getElementById('loadMore').onclick = loadItems; // Attach onclick event
